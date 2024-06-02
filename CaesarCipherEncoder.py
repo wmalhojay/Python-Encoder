@@ -21,25 +21,18 @@ while True:
     direction = input("Type 'encode' to encrypt, type 'decode' to decrypt:\n")
     text = list(input("Type your message:\n").lower())
     shift = int(input("Type the shift number:\n"))
+    shift = shift%26
 
     if direction == "encode":
         for i in text:
             z = alphabet.find(i)
             new = z+shift
-            if new > 25:
-                new = new - 26
-                text[text.index(i)] = alphabet[new]
-            else:
-                text[text.index(i)] = alphabet[new]
+            text[text.index(i)] = alphabet[new]
     else:
         for i in text:
             z = alphabet.find(i)
             new = z-shift
-            if new < 0:
-                new = new + 26
-                text[text.index(i)] = alphabet[new]
-            else:
-                text[text.index(i)] = alphabet[new]
+            text[text.index(i)] = alphabet[new]
     print(f"Encoded result --> {''.join(text)}")
     dec = input("Wanna Continue (Yes/No) : ").lower
     if dec == "no":
